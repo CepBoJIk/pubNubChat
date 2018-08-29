@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans&subset=cyrillic');
+
+body {
+  font-family: 'PT Sans', sans-serif;
+}
+
+.chat {
+  padding: 5%;
+  height: 100%;
+
+  &__viewport {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 2px solid #64AAD0;
+    height: 80%;
+    padding: 40px 0 5px;
+    overflow-y: auto;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+    }
+  
+    &::before {
+      border: 25px solid transparent;
+      border-left: 25px solid #FFBF73;
+      border-top: 25px solid #FFBF73;
+    }
+  
+    &::after {
+      border: 15px solid transparent;
+      border-left: 15px solid #fff;
+      border-top: 15px solid #fff;
+      z-index: 3;
+    }
+  }
+
+  &__empty-area {
+    flex: 0 1 100%;
+    max-width: 100%;
+  }
+
+  &__input-area {
+    display: flex;
+    width: 80%;
+    max-width: 600px;
+    margin: 15px auto;
+  }
+
+  &__input {
+    flex: 0 0 70%;
+    max-width: 70%;
+    line-height: 40px;
+    border: 1px solid #FFBF73;
+    padding: 0 20px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 16px;
+  }
+
+  &__button,
+  &__register {
+    flex: 0 0 15%;
+    max-width: 15%;
+    border: none;
+    background-color: #FFBF73;
+    border-radius: 0 5px 5px 0;
+    color: #fff;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  &__register {
+    border-radius: 5px 0 0 5px;
+  }
+}
+
+.message {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  padding: 5px 20px;
+
+  &__user-icon {
+    flex: 0 0 auto;
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  &__content {
+    flex: 0 1 100%;
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  &__user-name {
+    font-size: 18px;
+    padding: 5px 0;
+  }
+
+  &:nth-child(2n) {
+    background-color: #F8F8FF;
+  }
+}
+
+@import '../authorization.component/authorization.component.scss';

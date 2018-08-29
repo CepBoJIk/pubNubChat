@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="chat">
+    <div class="chat__viewport">
+      <div class="chat__empty-area"></div>
+      <template class="template-message">
+        <div class="message">
+          <div class="message__user-icon">
+            <img class="message__user-icon-item" src="https://picsum.photos/100/100/?random" alt="">
+          </div>
+          <div class="message__content">
+            <h5 class="message__user-name">Vasya</h5>
+            <p class="message__text">Привет!</p>
+          </div>
+        </div>
+      </template>
+
+    </div>
+    <form action="" class="chat__input-area">
+      <button class="chat__register">Войти</button>
+      <input class="chat__input" name="message" type="text" placeholder="Напишите сообщение...">
+      <button class="chat__button" type="submit" value="Enter">Go</button>
+    </form>
+    <p class="register-error">Введите свое имя для отправки сообщений</p>
+    <div class="register">
+      <input class="register__input" type="text" placeholder="Введите имя...">
+      <button class="register__button">Ок</button>
+    </div>
+    </div>
+  </div>
+</body>
+</html>
