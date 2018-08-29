@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --env=production",
+    "buildGit": "webpack --env=production:git",
     "eslint": "eslint",
     "start": "webpack-dev-server --open --env=development"
   },

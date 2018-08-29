@@ -4,26 +4,16 @@ const merge = require('webpack-merge');
 
 const PATHS = {
   'serve': path.resolve(__dirname, 'app'),
-  'build': path.resolve(__dirname, 'dist')
-}
-
-module.exports = function(env) {
-  console.log(env)
-  if (env = "development") {
-    return merge([common, css]);
-  }
-  if (env = "production") {
-    return merge([common, babel, uglify, autoprefixer, eslint])
-  }
-}
+  'build': path.resolve(__dirname, 'dist'),
+};
 
 const common = {
-  mode: "development",
+  mode: 'development',
   entry: `${PATHS.serve}/index.js`,
   output: {
     path: PATHS.build,
     filename: 'script.js',
-    publicPath: '/'
+    publicPath: '/',
   },
 
   module: {
@@ -32,21 +22,21 @@ const common = {
         test: /\.(html)$/,
         use: {
           loader: 'html-loader',
-        }
+        },
       },
       {
         test: /\.(png|jpg|gif)$/,
-        loader: 'file-loader?name=image/[name].[ext]'
-      }
-    ]
+        loader: 'file-loader?name=image/[name].[ext]',
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'index.html'
-    })
-  ]
-}
+      template: 'index.html',
+    }),
+  ],
+};
 
 const babel = {
   module: {
@@ -57,37 +47,37 @@ const babel = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      }
-    ]
-  }
-}
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+    ],
+  },
+};
 
 const uglify = {
   optimization: {
-    minimize: true
-  }
-}
+    minimize: true,
+  },
+};
 
 const eslint = {
   module: {
     rules: [
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js/,
         exclude: [
-          'node_modules'
+          'node_modules',
         ],
         loader: 'eslint-loader',
         options: {
-          failOnError: true
-        }
-      }
-    ]
-  }
-}
+          failOnError: true,
+        },
+      },
+    ],
+  },
+};
 
 const css = {
   module: {
@@ -97,25 +87,45 @@ const css = {
         use: [
           'style-loader',
           'css-loader',
-          'sass-loader'
-        ]
-      }
-    ]
-  }
-}
+          'sass-loader',
+        ],
+      },
+    ],
+  },
+};
 
 const autoprefixer = {
   module: {
-      rules: [
-          {
-              test: /\.s?css$/,
-              use: [
-                'style-loader', 
-                'css-loader', 
-                'postcss-loader',
-                'sass-loader'
-              ]
-          }
-      ]
-  }
-}
+    rules: [
+      {
+        test: /\.s?css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
+    ],
+  },
+};
+
+const githubPages = {
+  output: {
+    publicPath: '/pubNubChat/',
+  },
+};
+
+module.exports = function exportWebpackConfig(env) {
+  console.log(env)
+  if (env = "development") {
+    return merge([common, css]);
+  };
+  if (env = "production") {
+    return merge([common, babel, uglify, autoprefixer, eslint])
+  };
+  if (env = 'production:git') {
+    return merge([common, babel, uglify, autoprefixer, eslint, githubPages])
+  };
+  return common;
+};
